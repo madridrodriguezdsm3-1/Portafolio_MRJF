@@ -10,6 +10,119 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- title: el texto que aparece en la pestaña del navegador -->
   <title>[Tu Nombre] · Portafolio</title>
+
+  <!-- Google Fonts: tipografías que usa el formulario de contacto -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- style: estilos solo del formulario de contacto -->
+  <style>
+    :root{
+      --ink:#1F2933;
+      --ink-soft:#5B6672;
+      --paper:#EFF1EE;
+      --line:#C9CDC5;
+      --line-strong:#1F2933;
+      --moss:#2F5D50;
+      --moss-light:#E4EDE9;
+      --error:#A32D2D;
+      --error-bg:#FBEAEA;
+    }
+    #contacto .form-wrap *{box-sizing:border-box;}
+    #contacto .form-wrap{
+      font-family:'Inter',sans-serif;
+      color:var(--ink);
+      max-width:560px;
+      margin-top:24px;
+    }
+    #contacto .form-wrap form{display:flex; flex-direction:column; gap:28px;}
+    #contacto .field{position:relative; display:flex; flex-direction:column;}
+    #contacto .row{display:flex; gap:24px;}
+    #contacto .row .field{flex:1;}
+    #contacto label{
+      font-size:13px;
+      color:var(--ink-soft);
+      margin-bottom:8px;
+    }
+    #contacto label .req{color:var(--moss);}
+    #contacto input,
+    #contacto select,
+    #contacto textarea{
+      font-family:'Inter',sans-serif;
+      font-size:16px;
+      color:var(--ink);
+      background:transparent;
+      border:none;
+      border-bottom:1px solid var(--line);
+      padding:8px 0;
+      outline:none;
+      transition:border-color .15s ease;
+      width:100%;
+    }
+    #contacto select{appearance:none; -webkit-appearance:none; cursor:pointer;}
+    #contacto textarea{resize:vertical; min-height:96px; line-height:1.5;}
+    #contacto input:hover, #contacto select:hover, #contacto textarea:hover{border-color:var(--line-strong);}
+    #contacto input:focus, #contacto select:focus, #contacto textarea:focus{border-color:var(--moss); border-bottom-width:2px; padding-bottom:7px;}
+    #contacto input:invalid:not(:placeholder-shown):not(:focus),
+    #contacto textarea:invalid:not(:placeholder-shown):not(:focus){
+      border-color:var(--error);
+    }
+    #contacto .counter{font-size:12px; color:var(--ink-soft); text-align:right; margin-top:6px;}
+    #contacto .error-msg{
+      font-size:12px;
+      color:var(--error);
+      margin-top:6px;
+      display:none;
+    }
+    #contacto .field.show-error .error-msg{display:block;}
+    #contacto .field.show-error input,
+    #contacto .field.show-error select,
+    #contacto .field.show-error textarea{border-color:var(--error);}
+    #contacto .consent{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      font-size:13px;
+      color:var(--ink-soft);
+      line-height:1.5;
+      text-align:left;
+    }
+    #contacto .consent input{
+      margin-top:3px;
+      width:16px;
+      height:16px;
+      accent-color:var(--moss);
+      flex-shrink:0;
+    }
+    #contacto select:invalid{color:var(--ink-soft);}
+    #contacto button{
+      align-self:flex-start;
+      margin-top:8px;
+      background:var(--ink);
+      color:var(--paper);
+      border:none;
+      font-family:'Inter',sans-serif;
+      font-size:15px;
+      font-weight:500;
+      padding:14px 28px;
+      cursor:pointer;
+      transition:background .15s ease;
+    }
+    #contacto button:hover{background:var(--moss);}
+    #contacto .confirm{
+      display:none;
+      background:var(--moss-light);
+      border-left:3px solid var(--moss);
+      padding:20px 22px;
+      font-size:14px;
+      color:#204339;
+      line-height:1.6;
+      text-align:left;
+      margin-top:20px;
+    }
+    #contacto .confirm strong{display:block; font-size:15px; margin-bottom:4px;}
+  </style>
 <!-- cierre de head: termina la zona de metadatos -->
 </head>
 <!-- body: todo lo que SÍ se ve en pantalla va acá dentro -->
@@ -80,13 +193,143 @@
     <h2>Contacto</h2>
     <!-- reemplazá por tu correo real -->
     <p>[tu-correo@ejemplo.com]</p>
-    <!-- &copy; genera el símbolo © -->
+
+    <!-- form-wrap: contenedor que agrupa el formulario de contacto -->
+    <div class="form-wrap">
+      <!-- novalidate: apaga los globos nativos del navegador para mostrar nuestros propios mensajes -->
+      <form id="contactForm" novalidate>
+        <div class="row">
+          <div class="field" data-field="nombre">
+            <label for="nombre">Nombre completo <span class="req">●</span></label>
+            <input type="text" id="nombre" name="nombre" required minlength="2" maxlength="80" placeholder="Ana García" autocomplete="name">
+            <span class="error-msg"></span>
+          </div>
+          <div class="field" data-field="email">
+            <label for="email">Correo electrónico <span class="req">●</span></label>
+            <input type="email" id="email" name="email" required placeholder="ana@correo.com" autocomplete="email">
+            <span class="error-msg"></span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field" data-field="telefono">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" pattern="^[0-9+\s-]{7,15}$" placeholder="+52 662 000 0000" autocomplete="tel">
+            <span class="error-msg"></span>
+          </div>
+          <div class="field" data-field="asunto">
+            <label for="asunto">Asunto <span class="req">●</span></label>
+            <select id="asunto" name="asunto" required>
+              <option value="" disabled selected>Selecciona un motivo</option>
+              <option value="ventas">Consulta de ventas</option>
+              <option value="soporte">Soporte técnico</option>
+              <option value="colaboracion">Propuesta de colaboración</option>
+              <option value="otro">Otro</option>
+            </select>
+            <span class="error-msg"></span>
+          </div>
+        </div>
+
+        <div class="field" data-field="mensaje">
+          <label for="mensaje">Mensaje <span class="req">●</span></label>
+          <textarea id="mensaje" name="mensaje" required minlength="10" maxlength="500" placeholder="Escribe tu mensaje aquí"></textarea>
+          <div class="counter"><span id="charCount">0</span>/500</div>
+          <span class="error-msg"></span>
+        </div>
+
+        <label class="consent">
+          <input type="checkbox" id="privacidad" name="privacidad" required>
+          He leído y acepto el aviso de privacidad y el tratamiento de mis datos para dar seguimiento a esta consulta.
+        </label>
+
+        <button type="submit">Enviar mensaje</button>
+      </form>
+
+      <!-- confirm: mensaje que aparece cuando el formulario pasa la validación -->
+      <div class="confirm" id="confirm">
+        <strong>Mensaje enviado</strong>
+        Gracias por escribirnos. Recibirás una respuesta en tu correo en uno o dos días hábiles.
+      </div>
+    </div>
+
     <p>© 2026 [Tu Nombre]</p>
   <!-- cierre del footer -->
   </footer>
+
+  <!-- script: valida el formulario y muestra mensajes de error en español -->
+  <script>
+    const form = document.getElementById('contactForm');
+    const confirmBox = document.getElementById('confirm');
+    const textarea = document.getElementById('mensaje');
+    const charCount = document.getElementById('charCount');
+
+    const messages = {
+      nombre: { valueMissing: 'Escribe tu nombre.', tooShort: 'Usa al menos 2 caracteres.' },
+      email: { valueMissing: 'Escribe tu correo electrónico.', typeMismatch: 'Escribe un correo válido, como nombre@correo.com.' },
+      telefono: { patternMismatch: 'Usa solo números, espacios, + o - (7 a 15 caracteres).' },
+      asunto: { valueMissing: 'Selecciona un motivo de contacto.' },
+      mensaje: { valueMissing: 'Escribe tu mensaje.', tooShort: 'Cuéntanos un poco más, mínimo 10 caracteres.' },
+      privacidad: { valueMissing: 'Debes aceptar el aviso de privacidad para continuar.' }
+    };
+
+    textarea.addEventListener('input', () => {
+      charCount.textContent = textarea.value.length;
+    });
+
+    function showError(input) {
+      const wrapper = input.closest('.field');
+      const fieldName = input.name;
+      const errorEl = wrapper ? wrapper.querySelector('.error-msg') : null;
+      let msg = 'Revisa este campo.';
+      const val = input.validity;
+      const dict = messages[fieldName] || {};
+      if (val.valueMissing && dict.valueMissing) msg = dict.valueMissing;
+      else if (val.typeMismatch && dict.typeMismatch) msg = dict.typeMismatch;
+      else if (val.tooShort && dict.tooShort) msg = dict.tooShort;
+      else if (val.patternMismatch && dict.patternMismatch) msg = dict.patternMismatch;
+      if (errorEl) {
+        errorEl.textContent = msg;
+        wrapper.classList.add('show-error');
+      } else {
+        input.title = msg;
+      }
+    }
+
+    function clearError(input) {
+      const wrapper = input.closest('.field');
+      if (wrapper) wrapper.classList.remove('show-error');
+    }
+
+    form.querySelectorAll('input, select, textarea').forEach(el => {
+      el.addEventListener('input', () => clearError(el));
+      el.addEventListener('change', () => clearError(el));
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let firstInvalid = null;
+      form.querySelectorAll('input, select, textarea').forEach(el => clearError(el));
+
+      if (!form.checkValidity()) {
+        form.querySelectorAll('input, select, textarea').forEach(el => {
+          if (!el.checkValidity()) {
+            showError(el);
+            if (!firstInvalid) firstInvalid = el;
+          }
+        });
+        if (firstInvalid) firstInvalid.focus();
+        confirmBox.style.display = 'none';
+        return;
+      }
+
+      confirmBox.style.display = 'block';
+      form.reset();
+      charCount.textContent = '0';
+      confirmBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  </script>
 
 <!-- cierre de body -->
 </body>
 <!-- cierre de html: fin del documento -->
 </html>
-
