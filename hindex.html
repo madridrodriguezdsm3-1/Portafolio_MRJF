@@ -1,0 +1,91 @@
+<!-- DOCTYPE: le dice al navegador que interprete esto como HTML5 -->
+<!DOCTYPE html>
+<!-- html: la raíz del documento; lang="es" ayuda a lectores de pantalla y buscadores -->
+<html lang="es">
+<!-- head: metadatos que el navegador necesita pero que NO se ven en la página -->
+<head>
+  <!-- UTF-8: permite escribir tildes y ñ sin que se rompan -->
+  <meta charset="UTF-8">
+  <!-- viewport: hace que la página se adapte al ancho de un celular -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- title: el texto que aparece en la pestaña del navegador -->
+  <title>[Tu Nombre] · Portafolio</title>
+<!-- cierre de head: termina la zona de metadatos -->
+</head>
+<!-- body: todo lo que SÍ se ve en pantalla va acá dentro -->
+<body>
+
+  <!-- header: cabecera de la página, va una sola vez -->
+  <header> 
+    <!-- h1: el único título principal de toda la página -->
+    <h1>[Madrid Rodriguez Jesus Francisco]</h1>
+    <!-- p: subtítulo descriptivo, no cuenta como encabezado -->
+    <p>[Estudiante de Desarrollo Web · UTH]</p>
+    <!-- nav: agrupa los enlaces de navegación interna -->
+    <nav>
+      <!-- ul: lista no ordenada que contiene los enlaces -->
+      <ul>
+        <!-- li + a: cada ítem es un enlace; href="#sobre-mi" salta al id igual más abajo -->
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <!-- salta a la sección con id="skills" -->
+        <li><a href="#skills">Skills</a></li>
+        <!-- salta al footer con id="contacto" -->
+        <li><a href="#contacto">Contacto</a></li>
+      <!-- cierre de la lista -->
+      </ul>
+    <!-- cierre de nav -->
+    </nav>
+  <!-- cierre de header -->
+  </header>
+
+  <!-- main: el contenido único de la página, una sola vez -->
+  <main>
+    <!-- section con id="sobre-mi": acá aterriza el primer enlace del nav -->
+    <section id="sobre-mi">
+      <!-- h2: título propio de esta sección -->
+      <h2>Sobre mí</h2>
+      <!-- p: tu texto de presentación -->
+      <p>[2-3 frases: quién sos, qué estás estudiando, qué te interesa del desarrollo web.]</p>
+    <!-- cierre de la sección "sobre-mi" -->
+    </section>
+
+    <!-- section con id="skills": acá aterriza el segundo enlace del nav -->
+    <section id="skills">
+      <!-- h2: título propio de esta sección -->
+      <h2>Skills</h2>
+      <!-- article: cada skill tiene sentido leída sola, por eso NO es un div -->
+      <article>
+        <!-- h3: un nivel debajo del h2 de la sección -->
+        <h3>HTML5</h3>
+        <p>Estructura semántica de páginas web.</p>
+      <!-- cierre de este article -->
+      </article>
+      <!-- segundo article: mismo patrón, otra skill -->
+      <article>
+        <h3>Tailwind CSS</h3>
+        <p>Estilos responsivos utility-first.</p>
+      </article>
+      <!-- tercer article: mismo patrón, otra skill -->
+      <article>
+        <h3>Git & GitHub</h3>
+        <p>Control de versiones y despliegue.</p>
+      </article>
+    <!-- cierre de la sección "skills" -->
+    </section>
+  <!-- cierre de main -->
+  </main>
+
+  <!-- footer con id="contacto": acá aterriza el tercer enlace; va una sola vez, al final -->
+  <footer id="contacto">
+    <h2>Contacto</h2>
+    <!-- reemplazá por tu correo real -->
+    <p>[tu-correo@ejemplo.com]</p>
+    <!-- &copy; genera el símbolo © -->
+    <p>© 2026 [Tu Nombre]</p>
+  <!-- cierre del footer -->
+  </footer>
+
+<!-- cierre de body -->
+</body>
+<!-- cierre de html: fin del documento -->
+</html>
